@@ -1,0 +1,8 @@
+{
+  "name": "RISHI RISK",
+  "description": "A premium full-stack story and novel sharing platform featuring an immersive animated splash, chapter uploads, offline PDF downloads, reader engagement tools, analytics dashboards, and server-side Gemini AI story assistants.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

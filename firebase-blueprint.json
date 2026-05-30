@@ -1,0 +1,129 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User account information, bio, and stats",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "bio": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "admin"] },
+        "followersCount": { "type": "integer" },
+        "followingCount": { "type": "integer" },
+        "earnings": { "type": "number" },
+        "subscriptionActive": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "displayName", "email"]
+    },
+    "Story": {
+      "title": "Story/Novel",
+      "description": "Story details, metadata, and chapter definitions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "coverImage": { "type": "string" },
+        "category": { "type": "string" },
+        "tags": { "type": "array" },
+        "authorId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorPhoto": { "type": "string" },
+        "chapters": { "type": "array" },
+        "draft": { "type": "boolean" },
+        "isPremium": { "type": "boolean" },
+        "viewsCount": { "type": "integer" },
+        "downloadsCount": { "type": "integer" },
+        "ratingAverage": { "type": "number" },
+        "ratingCount": { "type": "integer" },
+        "commentsCount": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "title", "category", "authorId"]
+    },
+    "Like": {
+      "title": "Story Like",
+      "description": "Record representing a user liking a story",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "storyId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "storyId"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "A comment or structured reply on a story",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "storyId": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userPhoto": { "type": "string" },
+        "content": { "type": "string" },
+        "parentId": { "type": "string" },
+        "likesCount": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "storyId", "userId", "content"]
+    },
+    "Follow": {
+      "title": "Author Follow",
+      "description": "Record tracking relationship between reader and author",
+      "type": "object",
+      "properties": {
+        "followerId": { "type": "string" },
+        "followingId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["followerId", "followingId"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "In-app notifications for users",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "body": { "type": "string" },
+        "storyId": { "type": "string" },
+        "read": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "userId", "title"]
+    }
+  },
+  "firestore": {
+    "users": {
+      "schema": "User",
+      "description": "Collection of all user profiles and statistics"
+    },
+    "stories": {
+      "schema": "Story",
+      "description": "Collection of all published and draft stories/novels"
+    },
+    "likes": {
+      "schema": "Like",
+      "description": "User interactions showing appreciation for stories"
+    },
+    "comments": {
+      "schema": "Comment",
+      "description": "User feedback, suggestions and replies on stories"
+    },
+    "follows": {
+      "schema": "Follow",
+      "description": "Follow relationship linking readers to their favorite authors"
+    },
+    "notifications": {
+      "schema": "Notification",
+      "description": "Push/in-app notifications for chapter updates, actions, etc."
+    }
+  }
+}
